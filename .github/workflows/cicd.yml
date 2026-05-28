@@ -40,9 +40,8 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/cicd-flask-app:latest
 
-      - name: Deploy Locally Using Docker
+      - name: Deploy Locally Using Docker Compose
         run: |
-          docker pull ${{ secrets.DOCKER_USERNAME }}/cicd-flask-app:latest
-          docker stop cicd-flask-app || true
-          docker rm cicd-flask-app || true
-          docker run -d --name cicd-flask-app -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/cicd-flask-app:latest    
+          export DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
+          docker compose pull
+          docker compose up -d

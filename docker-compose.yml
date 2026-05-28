@@ -1,0 +1,7 @@
+services:
+  cicd-flask-app:
+    image: ${DOCKER_USERNAME}/cicd-flask-app:latest
+    container_name: cicd-flask-app
+    ports:
+      - "5000:5000"
+    restart: always
